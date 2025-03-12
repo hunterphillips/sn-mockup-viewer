@@ -2,12 +2,15 @@
 
 This is a boilerplate for a ServiceNow React app. It is a minimalistic app to get you started with building advanced UI/UX interfaces in React that can be hosted in ServiceNow.
 
-## Features
+![ServiceNow React App Screenshot](./img/1.png)
 
+### Features
 - React
 - TypeScript
 - Tailwind CSS
-- Pre-configured to be compiled into a single HTML file to be hosted in ServiceNow
+- Pre-configured for ServiceNow
+
+![](https://img.shields.io/badge/ServiceNow-React-blue)
 
 ## 1. Build the application
 
@@ -35,6 +38,7 @@ This will create a `dist` folder with the compiled application as a single HTML 
 The way how to host the application in ServiceNow is very simple and straightforward:
 
 1. Create a system property with string type and copy the content of the `dist/index.html` file into the value field of the system property.
+   ![ServiceNow React App Screenshot](./img/2.png)
 2. Create a Scripted REST API `GET` endpoint with the following script:
 ```js
 (function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
@@ -48,6 +52,10 @@ The way how to host the application in ServiceNow is very simple and straightfor
 ```
 > **Note:** Make sure the endpoint does not require any authentication.
 
+![ServiceNow React App Screenshot](./img/3.png)
+
 That's basically it. 
 
-Now you can now access the React application from inside ServiceNow by navigating to the Scripted REST API `GET`endpoint.
+Now you can now access the React application from inside ServiceNow by navigating to the Scripted REST API `GET`endpoint:
+
+![ServiceNow React App Screenshot](./img/4.png)
