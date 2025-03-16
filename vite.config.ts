@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import { viteSingleFile } from "vite-plugin-singlefile"
-// https://vite.dev/config/
+import tailwindcss from '@tailwindcss/vite'
+ 
 export default defineConfig({
-  plugins: [react(),  tailwindcss(),viteSingleFile()],
+  plugins: [react(),tailwindcss(),viteSingleFile()],
+  server: {
+    proxy: {
+      '/api': 'https://dev277185.service-now.com/', // ServiceNow instance URL for data requests
+    }
+  },
   build: {
     assetsInlineLimit: 10000000
   }
