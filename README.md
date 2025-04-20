@@ -257,3 +257,32 @@ Once you deploy the app to ServiceNow, whoever is logged in to ServiceNow and ac
 This is because we are using their session token to make the HTTP calls and ServiceNow will automatically authenticate you and give you the corresponding access to ServiceNow data:
 
 ![ServiceNow React App Screenshot](/img/final2.png) 
+
+## Routing
+
+Standard React Router is supported out of the box, but common routing patterns won't work in ServiceNow because of the nature of the platform and the way how we host the app.
+
+To enable routing we need to use `HashRouter`, here is an example of `main.tsx` file:
+
+```javascript
+import { HashRouter, Route, Routes } from 'react-router'
+import { ClientPage } from './pages/client/index.tsx'
+import { AgentDashboard } from './pages/agent/dashboard.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <>
+      <HashRouter>
+        <Routes>
+          <Route path="/client" element={<ClientPage />} />
+          <Route path="/agent" element={<AgentDashboard />} />
+        </Routes>
+      </HashRouter>
+    </>
+  </StrictMode>
+)
+
+```
+
+
+
