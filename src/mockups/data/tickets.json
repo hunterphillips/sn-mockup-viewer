@@ -1,0 +1,52 @@
+[
+  {
+    "id": "REQ0012345",
+    "title": "New laptop request",
+    "category": "Hardware",
+    "status": "In Progress",
+    "priority": "Medium",
+    "created": "2025-10-15",
+    "updated": "2025-10-18",
+    "assignedTo": "IT Support Team"
+  },
+  {
+    "id": "REQ0012346",
+    "title": "Software license renewal",
+    "category": "Software",
+    "status": "Approved",
+    "priority": "High",
+    "created": "2025-10-10",
+    "updated": "2025-10-17",
+    "assignedTo": "Software Management"
+  },
+  {
+    "id": "REQ0012347",
+    "title": "Office supplies order",
+    "category": "Facilities",
+    "status": "Completed",
+    "priority": "Low",
+    "created": "2025-10-05",
+    "updated": "2025-10-12",
+    "assignedTo": "Facilities Team"
+  },
+  {
+    "id": "REQ0012348",
+    "title": "Password reset request",
+    "category": "Security",
+    "status": "Completed",
+    "priority": "High",
+    "created": "2025-10-18",
+    "updated": "2025-10-18",
+    "assignedTo": "Security Team"
+  },
+  {
+    "id": "REQ0012349",
+    "title": "Training course enrollment",
+    "category": "Learning",
+    "status": "Pending",
+    "priority": "Low",
+    "created": "2025-10-19",
+    "updated": "2025-10-19",
+    "assignedTo": "HR Training"
+  }
+]

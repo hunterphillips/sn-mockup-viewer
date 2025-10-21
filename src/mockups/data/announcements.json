@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "title": "System Maintenance Scheduled",
+    "message": "The portal will be unavailable on Saturday, October 25th from 2:00 AM to 6:00 AM for scheduled maintenance.",
+    "type": "warning",
+    "date": "2025-10-18",
+    "priority": "high"
+  },
+  {
+    "id": "2",
+    "title": "New Benefits Enrollment Period",
+    "message": "Open enrollment for 2026 benefits is now available. Please review and update your selections by November 30th.",
+    "type": "info",
+    "date": "2025-10-15",
+    "priority": "medium"
+  },
+  {
+    "id": "3",
+    "title": "Holiday Office Closure",
+    "message": "Our offices will be closed on Thursday, November 27th and Friday, November 28th for Thanksgiving.",
+    "type": "info",
+    "date": "2025-10-10",
+    "priority": "low"
+  },
+  {
+    "id": "4",
+    "title": "IT Security Training Required",
+    "message": "All employees must complete the annual cybersecurity training by October 31st. Access the course through the Learning portal.",
+    "type": "warning",
+    "date": "2025-10-05",
+    "priority": "high"
+  },
+  {
+    "id": "5",
+    "title": "New Employee Wellness Program",
+    "message": "We're excited to announce our new wellness program! Sign up for fitness classes, meditation sessions, and health screenings.",
+    "type": "success",
+    "date": "2025-10-01",
+    "priority": "low"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "my-requests",
+    "title": "My Requests",
+    "description": "Manage end track service requests",
+    "icon": "folder"
+  },
+  {
+    "id": "time-off",
+    "title": "Time Off",
+    "description": "View and request time off",
+    "icon": "calendar"
+  },
+  {
+    "id": "assets",
+    "title": "Assets",
+    "description": "Browse company-provided assets",
+    "icon": "laptop"
+  },
+  {
+    "id": "knowledge",
+    "title": "Knowledge",
+    "description": "Find answers and documentation",
+    "icon": "lightbulb"
+  }
+]

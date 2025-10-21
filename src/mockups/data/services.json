@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1",
+    "name": "Request Equipment",
+    "category": "Hardware",
+    "icon": "laptop",
+    "description": "Request new laptops, monitors, keyboards, and other hardware",
+    "popular": true
+  },
+  {
+    "id": "2",
+    "name": "Software Access",
+    "category": "Software",
+    "icon": "application",
+    "description": "Request access to software applications and tools",
+    "popular": true
+  },
+  {
+    "id": "3",
+    "name": "IT Support",
+    "category": "Support",
+    "icon": "support",
+    "description": "Get help with technical issues and troubleshooting",
+    "popular": true
+  },
+  {
+    "id": "4",
+    "name": "Submit Time Off",
+    "category": "HR",
+    "icon": "calendar",
+    "description": "Request vacation, sick leave, or personal time off",
+    "popular": true
+  },
+  {
+    "id": "5",
+    "name": "Expense Report",
+    "category": "Finance",
+    "icon": "receipt",
+    "description": "Submit and track business expenses",
+    "popular": false
+  },
+  {
+    "id": "6",
+    "name": "Office Supplies",
+    "category": "Facilities",
+    "icon": "supplies",
+    "description": "Order pens, paper, and other office supplies",
+    "popular": false
+  },
+  {
+    "id": "7",
+    "name": "Training & Development",
+    "category": "Learning",
+    "icon": "education",
+    "description": "Enroll in courses and training programs",
+    "popular": false
+  },
+  {
+    "id": "8",
+    "name": "Password Reset",
+    "category": "Security",
+    "icon": "lock",
+    "description": "Reset your password or unlock your account",
+    "popular": true
+  },
+  {
+    "id": "9",
+    "name": "Building Access",
+    "category": "Facilities",
+    "icon": "key",
+    "description": "Request access cards or building permissions",
+    "popular": false
+  },
+  {
+    "id": "10",
+    "name": "Report an Issue",
+    "category": "Facilities",
+    "icon": "warning",
+    "description": "Report broken equipment or facility issues",
+    "popular": false
+  },
+  {
+    "id": "11",
+    "name": "Payroll Information",
+    "category": "HR",
+    "icon": "dollar",
+    "description": "View payslips and update payment details",
+    "popular": false
+  },
+  {
+    "id": "12",
+    "name": "Benefits Enrollment",
+    "category": "HR",
+    "icon": "health",
+    "description": "Manage health insurance and retirement plans",
+    "popular": false
+  }
+]

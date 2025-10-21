@@ -1,0 +1,14 @@
+[
+  {
+    "id": "office-maintenance",
+    "title": "Office Maintenance",
+    "description": "Scheduled maintenance May 15 th",
+    "icon": "tools"
+  },
+  {
+    "id": "policy-update",
+    "title": "Policy Update",
+    "description": "Review the latest changes to company policies",
+    "icon": "document"
+  }
+]

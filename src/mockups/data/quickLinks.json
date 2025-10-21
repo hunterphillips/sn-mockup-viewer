@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "title": "Company Directory",
+    "description": "Search for colleagues and contact information",
+    "icon": "users",
+    "url": "#"
+  },
+  {
+    "id": "2",
+    "title": "IT Knowledge Base",
+    "description": "Find answers to common IT questions",
+    "icon": "book",
+    "url": "#"
+  },
+  {
+    "id": "3",
+    "title": "HR Policies",
+    "description": "Review company policies and procedures",
+    "icon": "document",
+    "url": "#"
+  },
+  {
+    "id": "4",
+    "title": "Learning Portal",
+    "description": "Access training courses and certifications",
+    "icon": "graduation",
+    "url": "#"
+  },
+  {
+    "id": "5",
+    "title": "My Requests",
+    "description": "Track your service requests and tickets",
+    "icon": "ticket",
+    "url": "#"
+  },
+  {
+    "id": "6",
+    "title": "Company News",
+    "description": "Stay updated with company announcements",
+    "icon": "news",
+    "url": "#"
+  }
+]
