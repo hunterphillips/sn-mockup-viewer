@@ -39,17 +39,21 @@ function App() {
   const currentIndex = mockups.findIndex((m) => m.id === selectedMockup);
 
   const goToPrevious = () => {
-    const previousIndex = currentIndex === 0 ? mockups.length - 1 : currentIndex - 1;
+    const previousIndex =
+      currentIndex === 0 ? mockups.length - 1 : currentIndex - 1;
     setSelectedMockup(mockups[previousIndex].id);
   };
 
   const goToNext = () => {
-    const nextIndex = currentIndex === mockups.length - 1 ? 0 : currentIndex + 1;
+    const nextIndex =
+      currentIndex === mockups.length - 1 ? 0 : currentIndex + 1;
     setSelectedMockup(mockups[nextIndex].id);
   };
 
-  const getPreviousIndex = () => currentIndex === 0 ? mockups.length - 1 : currentIndex - 1;
-  const getNextIndex = () => currentIndex === mockups.length - 1 ? 0 : currentIndex + 1;
+  const getPreviousIndex = () =>
+    currentIndex === 0 ? mockups.length - 1 : currentIndex - 1;
+  const getNextIndex = () =>
+    currentIndex === mockups.length - 1 ? 0 : currentIndex + 1;
 
   // If a mockup is selected, render it with a back button
   if (currentMockup) {
@@ -219,7 +223,7 @@ function App() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        {/* <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h3 className="text-lg font-semibold text-blue-900 mb-2">
             How to Use
           </h3>
@@ -241,7 +245,7 @@ function App() {
               </span>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

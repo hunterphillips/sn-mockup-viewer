@@ -22,7 +22,7 @@ function Container() {
         setToken('dev mode');
       } else {
         axios
-          .get('/api/x_elsr_micro_front/microfrontends/get_token') // THIS IS YOUR ENDPOINT TO GET A TOKEN
+          .get('/api/x_ipnll_react_ap_0/react/get_token') // THIS IS YOUR ENDPOINT TO GET A TOKEN
           .then((r) => {
             axios.defaults.headers['X-userToken'] = r.data.result.sessionToken;
             console.log(

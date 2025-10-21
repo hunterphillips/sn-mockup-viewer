@@ -1,0 +1,20 @@
+[
+  {
+    "id": "tasks",
+    "label": "Tasks",
+    "count": 0,
+    "icon": "checkCircle"
+  },
+  {
+    "id": "requests",
+    "label": "Requests",
+    "count": 0,
+    "icon": "document"
+  },
+  {
+    "id": "assessments",
+    "label": "Assessments",
+    "count": 0,
+    "icon": "question"
+  }
+]

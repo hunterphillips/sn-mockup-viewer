@@ -7,20 +7,30 @@ import {
   LightbulbIconIPC,
   ToolsIconIPC,
   DocumentArrowIconIPC,
+  GearIconIPC,
+  ClipboardIconIPC,
+  ReceiptIconIPC,
+  StarIconIPC,
   ChevronDownIcon,
   SunIcon,
   MoonIcon,
+  CheckCircleIcon,
+  DocumentIcon,
+  QuestionIcon,
+  CalendarIcon,
+  ArrowRightIcon,
 } from '../components';
 // import { ipcColors } from '../theme/colors';
 import { Theme, getTheme } from '../theme/ipcTheme';
 import shortcutsData from '../data/ipc-shortcuts.json';
 import announcementsData from '../data/ipc-announcements.json';
+import activeItemsData from '../data/ipc-active-items.json';
 import logoBanner from '../assets/logo-banner.png';
 import exampleUser from '../assets/example-user2.png';
 
 export const IntegrityProV1 = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
 
   // Load theme from localStorage on mount
   useEffect(() => {
@@ -48,6 +58,17 @@ export const IntegrityProV1 = () => {
     lightbulb: LightbulbIconIPC,
     tools: ToolsIconIPC,
     document: DocumentArrowIconIPC,
+    gear: GearIconIPC,
+    clipboard: ClipboardIconIPC,
+    receipt: ReceiptIconIPC,
+    star: StarIconIPC,
+  };
+
+  const activeItemIconMap = {
+    checkCircle: CheckCircleIcon,
+    document: DocumentIcon,
+    question: QuestionIcon,
+    calendar: CalendarIcon,
   };
 
   return (
@@ -84,7 +105,7 @@ export const IntegrityProV1 = () => {
                 className="text-sm font-medium hover:opacity-70 transition-all duration-200"
                 style={{ color: colors.textLight }}
               >
-                Requests
+                Catalog
               </a>
               <a
                 href="#"
@@ -210,8 +231,8 @@ export const IntegrityProV1 = () => {
           </div>
 
           <h2
-            className="text-3xl font-semibold transition-colors duration-200"
-            style={{ color: colors.text }}
+            className="text-3xl font-extralight transition-colors duration-200"
+            style={{ color: colors.text, letterSpacing: '1px' }}
           >
             How can we assist you today?
           </h2>
@@ -225,7 +246,7 @@ export const IntegrityProV1 = () => {
               className="text-2xl font-bold mb-6 transition-colors duration-200"
               style={{ color: colors.text }}
             >
-              Shortcuts
+              Quick links
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {shortcutsData.map((shortcut) => {
@@ -302,6 +323,59 @@ export const IntegrityProV1 = () => {
                   </button>
                 );
               })}
+            </div>
+
+            {/* My Active Items Section */}
+            <div className="mt-8">
+              <h3
+                className="text-2xl font-bold mb-6 transition-colors duration-200"
+                style={{ color: colors.text }}
+              >
+                My active items
+              </h3>
+              <div
+                className="rounded-lg border overflow-hidden"
+                style={{
+                  backgroundColor: colors.cardBackground,
+                  borderColor: colors.border,
+                }}
+              >
+                {activeItemsData.map((item, index) => {
+                  const IconComponent =
+                    activeItemIconMap[item.icon as keyof typeof activeItemIconMap];
+                  return (
+                    <button
+                      key={item.id}
+                      className={`w-full p-4 text-left hover:opacity-70 transition-all duration-200 flex items-center gap-3 ${
+                        index !== activeItemsData.length - 1 ? 'border-b' : ''
+                      }`}
+                      style={{
+                        borderColor: colors.border,
+                      }}
+                    >
+                      <div
+                        className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+                        style={{ backgroundColor: colors.primary + '15' }}
+                      >
+                        <IconComponent size={20} style={{ color: colors.primary }} />
+                      </div>
+                      <span
+                        className="flex-1 text-sm font-medium transition-colors duration-200"
+                        style={{ color: colors.text }}
+                      >
+                        {item.label}
+                      </span>
+                      <span
+                        className="text-lg font-semibold transition-colors duration-200"
+                        style={{ color: colors.primary }}
+                      >
+                        {item.count}
+                      </span>
+                      <ArrowRightIcon size={16} style={{ color: colors.textMuted }} />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

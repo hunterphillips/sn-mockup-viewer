@@ -1,26 +1,38 @@
 [
   {
-    "id": "my-requests",
-    "title": "My Requests",
-    "description": "Manage end track service requests",
-    "icon": "folder"
+    "id": "it-services",
+    "title": "IT Services",
+    "description": "Request IT support and services",
+    "icon": "tools"
   },
   {
-    "id": "time-off",
-    "title": "Time Off",
-    "description": "View and request time off",
-    "icon": "calendar"
+    "id": "human-resources",
+    "title": "Human Resources",
+    "description": "Access benefits, leave, and HR services",
+    "icon": "clipboard"
   },
   {
-    "id": "assets",
-    "title": "Assets",
-    "description": "Browse company-provided assets",
-    "icon": "laptop"
+    "id": "operations",
+    "title": "Operations",
+    "description": "Events, recruitment, and firm initiatives",
+    "icon": "gear"
   },
   {
     "id": "knowledge",
     "title": "Knowledge",
     "description": "Find answers and documentation",
     "icon": "lightbulb"
+  },
+  {
+    "id": "expense-report",
+    "title": "Expense Report",
+    "description": "Submit an expense for reimbursement",
+    "icon": "receipt"
+  },
+  {
+    "id": "firm-initiatives",
+    "title": "Firm Initiatives",
+    "description": "Select your Firm Initiatives for the year",
+    "icon": "star"
   }
 ]
