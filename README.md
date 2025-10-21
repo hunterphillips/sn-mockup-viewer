@@ -5,8 +5,8 @@ A mockup comparison tool for viewing and navigating design variations.
 ## Features
 
 - Card-based mockup selector
-- Infinite carousel navigation (hover left/right edges)
-- Light/dark theme toggle with persistence
+- Carousel navigation
+- Light/dark theme
 - Reusable component library
 - Mobile responsive
 
@@ -97,7 +97,7 @@ React 19, TypeScript, Tailwind CSS 4, Vite
 
 ## Example
 
-Includes IntegrityPro Employee Center mockup with custom branding and theme support.
+Includes Employee Center portal mockup with custom branding and theme support.
 
 ## License
 
