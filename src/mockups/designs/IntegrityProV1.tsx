@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   // SearchBar,
   FolderIconIPC,
@@ -8,8 +8,11 @@ import {
   ToolsIconIPC,
   DocumentArrowIconIPC,
   ChevronDownIcon,
+  SunIcon,
+  MoonIcon,
 } from '../components';
-import { ipcColors } from '../theme/colors';
+// import { ipcColors } from '../theme/colors';
+import { Theme, getTheme } from '../theme/ipcTheme';
 import shortcutsData from '../data/ipc-shortcuts.json';
 import announcementsData from '../data/ipc-announcements.json';
 import logoBanner from '../assets/logo-banner.png';
@@ -17,6 +20,26 @@ import exampleUser from '../assets/example-user2.png';
 
 export const IntegrityProV1 = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [theme, setTheme] = useState<Theme>('light');
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('ipc-theme') as Theme;
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  // Save theme to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('ipc-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
+  const colors = getTheme(theme);
 
   const iconMap = {
     folder: FolderIconIPC,
@@ -28,9 +51,18 @@ export const IntegrityProV1 = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FBFDFC' }}>
+    <div
+      className="min-h-screen transition-colors duration-300"
+      style={{ backgroundColor: colors.background }}
+    >
       {/* Header */}
-      <header className="" style={{ borderColor: ipcColors.lightestGray }}>
+      <header
+        className="border-b transition-colors duration-300"
+        style={{
+          backgroundColor: colors.headerBackground,
+          borderColor: colors.headerBorder,
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -42,36 +74,36 @@ export const IntegrityProV1 = () => {
             <nav className="hidden md:flex items-center gap-8">
               <a
                 href="#"
-                className="text-sm font-medium hover:opacity-70 transition-opacity"
-                style={{ color: ipcColors.primary }}
+                className="text-sm font-medium hover:opacity-70 transition-all duration-200"
+                style={{ color: colors.primary }}
               >
                 Home
               </a>
               <a
                 href="#"
-                className="text-sm font-medium hover:opacity-70 transition-opacity"
-                style={{ color: ipcColors.textLight }}
+                className="text-sm font-medium hover:opacity-70 transition-all duration-200"
+                style={{ color: colors.textLight }}
               >
                 Requests
               </a>
               <a
                 href="#"
-                className="text-sm font-medium hover:opacity-70 transition-opacity"
-                style={{ color: ipcColors.textLight }}
+                className="text-sm font-medium hover:opacity-70 transition-all duration-200"
+                style={{ color: colors.textLight }}
               >
                 Time Off
               </a>
               <a
                 href="#"
-                className="text-sm font-medium hover:opacity-70 transition-opacity"
-                style={{ color: ipcColors.textLight }}
+                className="text-sm font-medium hover:opacity-70 transition-all duration-200"
+                style={{ color: colors.textLight }}
               >
                 Knowledge
               </a>
             </nav>
 
-            {/* User Profile */}
-            <div className="flex items-center gap-3">
+            {/* User Profile & Theme Toggle */}
+            <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity">
                 <div className="w-8 h-8 rounded-full overflow-hidden">
                   <img
@@ -81,13 +113,31 @@ export const IntegrityProV1 = () => {
                   />
                 </div>
                 <span
-                  className="text-sm font-medium hidden sm:inline"
-                  style={{ color: ipcColors.text }}
+                  className="text-sm font-medium hidden sm:inline transition-colors duration-200"
+                  style={{ color: colors.text }}
                 >
                   Sofia Perez
                 </span>
-                <ChevronDownIcon size={16} className="text-gray-500" />
+                <ChevronDownIcon
+                  size={16}
+                  className="transition-colors duration-200"
+                  style={{ color: colors.textMuted }}
+                />
               </div>
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-200"
+                title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                style={{ color: colors.textLight }}
+              >
+                {theme === 'light' ? (
+                  <MoonIcon size={20} />
+                ) : (
+                  <SunIcon size={20} />
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -109,12 +159,13 @@ export const IntegrityProV1 = () => {
             <div className="flex gap-2">
               <div className="flex-1 relative">
                 <svg
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 transition-colors duration-200"
                   width={20}
                   height={20}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  style={{ color: colors.textMuted }}
                 >
                   <path
                     strokeLinecap="round"
@@ -128,16 +179,17 @@ export const IntegrityProV1 = () => {
                   placeholder="Search"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-shadow"
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border focus:outline-none focus:ring-2 transition-all duration-200"
                   style={{
-                    borderColor: ipcColors.mediumGray,
-                    backgroundColor: 'white',
+                    borderColor: colors.inputBorder,
+                    backgroundColor: colors.inputBackground,
+                    color: colors.inputText,
                   }}
                 />
               </div>
               <button
-                className="px-8 py-3 rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: ipcColors.primary }}
+                className="px-8 py-3 rounded-lg text-white font-medium hover:opacity-90 transition-all duration-200"
+                style={{ backgroundColor: colors.primary }}
               >
                 <svg
                   width={20}
@@ -158,8 +210,8 @@ export const IntegrityProV1 = () => {
           </div>
 
           <h2
-            className="text-3xl font-semibold"
-            style={{ color: ipcColors.text }}
+            className="text-3xl font-semibold transition-colors duration-200"
+            style={{ color: colors.text }}
           >
             How can we assist you today?
           </h2>
@@ -170,8 +222,8 @@ export const IntegrityProV1 = () => {
           {/* Shortcuts Section */}
           <div className="lg:col-span-2">
             <h3
-              className="text-2xl font-bold mb-6"
-              style={{ color: ipcColors.text }}
+              className="text-2xl font-bold mb-6 transition-colors duration-200"
+              style={{ color: colors.text }}
             >
               Shortcuts
             </h3>
@@ -182,21 +234,24 @@ export const IntegrityProV1 = () => {
                 return (
                   <button
                     key={shortcut.id}
-                    className="bg-white rounded-lg p-6 text-left hover:shadow-lg transition-shadow border"
-                    style={{ borderColor: ipcColors.lightestGray }}
+                    className="rounded-lg p-6 text-left hover:shadow-lg transition-all duration-200 border"
+                    style={{
+                      backgroundColor: colors.cardBackground,
+                      borderColor: colors.border,
+                    }}
                   >
                     <div className="mb-4">
-                      <IconComponent size={32} color={ipcColors.primary} />
+                      <IconComponent size={32} color={colors.primary} />
                     </div>
                     <h4
-                      className="text-lg font-semibold mb-2"
-                      style={{ color: ipcColors.text }}
+                      className="text-lg font-semibold mb-2 transition-colors duration-200"
+                      style={{ color: colors.text }}
                     >
                       {shortcut.title}
                     </h4>
                     <p
-                      className="text-sm"
-                      style={{ color: ipcColors.textLight }}
+                      className="text-sm transition-colors duration-200"
+                      style={{ color: colors.textLight }}
                     >
                       {shortcut.description}
                     </p>
@@ -209,8 +264,8 @@ export const IntegrityProV1 = () => {
           {/* Announcements Section */}
           <div className="lg:col-span-1">
             <h3
-              className="text-2xl font-bold mb-6"
-              style={{ color: ipcColors.text }}
+              className="text-2xl font-bold mb-6 transition-colors duration-200"
+              style={{ color: colors.text }}
             >
               Announcements
             </h3>
@@ -221,22 +276,25 @@ export const IntegrityProV1 = () => {
                 return (
                   <button
                     key={announcement.id}
-                    className="w-full bg-white rounded-lg p-6 text-left hover:shadow-lg transition-shadow border flex items-start gap-4"
-                    style={{ borderColor: ipcColors.lightestGray }}
+                    className="w-full rounded-lg p-6 text-left hover:shadow-lg transition-all duration-200 border flex items-start gap-4"
+                    style={{
+                      backgroundColor: colors.cardBackground,
+                      borderColor: colors.border,
+                    }}
                   >
                     <div className="flex-shrink-0">
-                      <IconComponent size={32} color={ipcColors.primary} />
+                      <IconComponent size={32} color={colors.primary} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4
-                        className="text-lg font-semibold mb-2"
-                        style={{ color: ipcColors.text }}
+                        className="text-lg font-semibold mb-2 transition-colors duration-200"
+                        style={{ color: colors.text }}
                       >
                         {announcement.title}
                       </h4>
                       <p
-                        className="text-sm"
-                        style={{ color: ipcColors.textLight }}
+                        className="text-sm transition-colors duration-200"
+                        style={{ color: colors.textLight }}
                       >
                         {announcement.description}
                       </p>
