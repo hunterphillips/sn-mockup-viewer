@@ -23,6 +23,7 @@ const iconPaths: Record<string, string | { type: 'complex'; content: React.React
   menu: "M4 6h16M4 12h16M4 18h16",
   chevronDown: "M19 9l-7 7-7-7",
   moon: "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z",
+  logout: "M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1",
 }
 
 // Special case for SunIcon which has multiple elements
@@ -74,3 +75,4 @@ export const MenuIcon = createIcon(iconPaths.menu)
 export const ChevronDownIcon = createIcon(iconPaths.chevronDown)
 export const SunIcon = createIcon(iconPaths.sun)
 export const MoonIcon = createIcon(iconPaths.moon)
+export const LogoutIcon = createIcon(iconPaths.logout)

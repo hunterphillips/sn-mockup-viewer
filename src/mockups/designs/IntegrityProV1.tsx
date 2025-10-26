@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   // SearchBar,
   FolderIconIPC,
@@ -19,6 +19,8 @@ import {
   QuestionIcon,
   CalendarIcon,
   ArrowRightIcon,
+  UserIcon,
+  LogoutIcon,
 } from '../components';
 // import { ipcColors } from '../theme/colors';
 import { Theme, getTheme } from '../theme/ipcTheme';
@@ -31,6 +33,8 @@ import exampleUser from '../assets/example-user2.png';
 export const IntegrityProV1 = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState<Theme>('dark');
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Load theme from localStorage on mount
   useEffect(() => {
@@ -45,8 +49,30 @@ export const IntegrityProV1 = () => {
     localStorage.setItem('ipc-theme', theme);
   }, [theme]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const closeDropdown = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false);
+      }
+    };
+
+    if (showUserMenu) {
+      document.addEventListener('click', closeDropdown);
+    }
+
+    return () => {
+      document.removeEventListener('click', closeDropdown);
+    };
+  }, [showUserMenu]);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
+
+  const toggleUserMenu = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setShowUserMenu(!showUserMenu);
   };
 
   const colors = getTheme(theme);
@@ -92,7 +118,7 @@ export const IntegrityProV1 = () => {
             </div>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden-xs md:flex items-center gap-8">
               <a
                 href="#"
                 className="text-sm font-medium hover:opacity-70 transition-all duration-200"
@@ -125,25 +151,66 @@ export const IntegrityProV1 = () => {
 
             {/* User Profile & Theme Toggle */}
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity">
-                <div className="w-8 h-8 rounded-full overflow-hidden">
-                  <img
-                    src={exampleUser}
-                    alt="Sofia Perez"
-                    className="w-full h-full object-cover"
+              <div className="relative" ref={dropdownRef}>
+                <div
+                  className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity"
+                  onClick={toggleUserMenu}
+                >
+                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                    <img
+                      src={exampleUser}
+                      alt="Sofia Perez"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span
+                    className="text-sm font-medium hidden sm:inline transition-colors duration-200"
+                    style={{ color: colors.text }}
+                  >
+                    Sofia Perez
+                  </span>
+                  <ChevronDownIcon
+                    size={16}
+                    className="transition-colors duration-200"
+                    style={{ color: colors.textMuted }}
                   />
                 </div>
-                <span
-                  className="text-sm font-medium hidden sm:inline transition-colors duration-200"
-                  style={{ color: colors.text }}
-                >
-                  Sofia Perez
-                </span>
-                <ChevronDownIcon
-                  size={16}
-                  className="transition-colors duration-200"
-                  style={{ color: colors.textMuted }}
-                />
+
+                {/* User Dropdown Menu */}
+                {showUserMenu && (
+                  <div
+                    className="absolute top-full right-0 mt-2 min-w-[180px] rounded-lg border shadow-lg py-2 z-50"
+                    style={{
+                      backgroundColor: colors.cardBackground,
+                      borderColor: colors.border,
+                    }}
+                  >
+                    <a
+                      href="#profile"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-200 hover:opacity-70"
+                      style={{ color: colors.text }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowUserMenu(false);
+                      }}
+                    >
+                      <UserIcon size={16} style={{ color: colors.textLight }} />
+                      Profile
+                    </a>
+                    <a
+                      href="#logout"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-200 hover:opacity-70"
+                      style={{ color: colors.text }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowUserMenu(false);
+                      }}
+                    >
+                      <LogoutIcon size={16} style={{ color: colors.textLight }} />
+                      Logout
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Theme Toggle */}
@@ -342,7 +409,9 @@ export const IntegrityProV1 = () => {
               >
                 {activeItemsData.map((item, index) => {
                   const IconComponent =
-                    activeItemIconMap[item.icon as keyof typeof activeItemIconMap];
+                    activeItemIconMap[
+                      item.icon as keyof typeof activeItemIconMap
+                    ];
                   return (
                     <button
                       key={item.id}
@@ -357,7 +426,10 @@ export const IntegrityProV1 = () => {
                         className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
                         style={{ backgroundColor: colors.primary + '15' }}
                       >
-                        <IconComponent size={20} style={{ color: colors.primary }} />
+                        <IconComponent
+                          size={20}
+                          style={{ color: colors.primary }}
+                        />
                       </div>
                       <span
                         className="flex-1 text-sm font-medium transition-colors duration-200"
@@ -371,7 +443,10 @@ export const IntegrityProV1 = () => {
                       >
                         {item.count}
                       </span>
-                      <ArrowRightIcon size={16} style={{ color: colors.textMuted }} />
+                      <ArrowRightIcon
+                        size={16}
+                        style={{ color: colors.textMuted }}
+                      />
                     </button>
                   );
                 })}
